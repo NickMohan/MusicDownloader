@@ -52,9 +52,6 @@ def youtube_search(options):
 
     return(videos)
 
-    #print ("Channels:\n", "\n".join(channels), "\n")
-    #print ("Playlists:\n", "\n".join(playlists), "\n")
-
 if __name__ == "__main__":
     argparser.add_argument("--q", help="Search term", default="Programming")
     argparser.add_argument("--max-results", help="Max results", default=25)
