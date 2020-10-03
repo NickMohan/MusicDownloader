@@ -55,6 +55,8 @@ def youtube_search(options):
 if __name__ == "__main__":
     argparser.add_argument("--q", help="Search term", default="Programming")
     argparser.add_argument("--max-results", help="Max results", default=25)
+    argparser.add_argument("--v", help="get version", default="1.0.1")
+    argparser.add_argument("--help", help="Commands: --q, --max-results", default=25)
     args = argparser.parse_args()
 
     try:
