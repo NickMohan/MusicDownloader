@@ -16,11 +16,10 @@ def youtube_search(options):
     # Call the search.list method to retrieve results matching the specified
     # query term.
     search_response = youtube.search().list(
-        q="The Moment I Knew",
+        q=options.q,
         part="id,snippet",
-        maxResults=options.max_results
+        maxResults=5
     ).execute()
-
     videos = []
     channels = []
     playlists = []

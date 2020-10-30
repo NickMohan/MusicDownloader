@@ -7,6 +7,23 @@ import argparse
 import youtube_dl
 import config
 
+
+def download(idList, x):
+
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192'
+        }],
+        'outtmpl': filePath+'%(title)s.%(ext)s',
+    }
+
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        ydl.download(['https://www.youtube.com/watch?v='+idList[x][0]])
+
+
 trackList = []
 idList = []
 #User inputs for album and artists
@@ -38,10 +55,9 @@ for x in range(0,len(trackList)):
       parser.add_argument("--q", help="Search term", default=search)
       parser.add_argument("--max-results", help="Max results", default=1)
       args = parser.parse_args()
-
     try:
         idList.append(youtube_search(args))
-    except (HttpError,e):
+    except requests.HTTPError as e:
         print ("An HTTP error %d occurred:\n%s" % (e.resp.status, e.content))
 
 #Take Youtube ids and download the mp3s for each song
@@ -62,8 +78,12 @@ print("%s / %s complete" %
       (str(0).ljust(3), str(len(idList)).ljust(3)), end='\r')
 
 for x in range(0,len(idList)):
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download(['https://www.youtube.com/watch?v='+idList[x][0]])
+    try:
+        download(idList,x)
+#        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+#            ydl.download(['https://www.youtube.com/watch?v='+idList[x][0]])
+    except:
+        idList.append([idList[x][0]])
     print("%s / %s complete" %
           (str(x).ljust(3), str(len(idList)).ljust(3)), end='\r')
 

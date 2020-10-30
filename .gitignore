@@ -13,5 +13,6 @@ __pycache__
 *.pyc
 
 config.py
-
+client_secrets.json
+/music/*
 
