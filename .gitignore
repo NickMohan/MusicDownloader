@@ -12,3 +12,6 @@ dir_to_exclude/GoogleReference.py
 __pycache__
 *.pyc
 
+config.py
+
+
