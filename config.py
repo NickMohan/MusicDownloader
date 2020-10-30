@@ -1,7 +1,7 @@
 SAVE_LOCATION = "C:/Users/Nick/Music/Music/%s/%s/"
 
 class Spotify:
-    CLIENT_ID = ""
+    CLIENT_ID = "hello"
     CLIENT_SECRET = ""
 
 class Youtube:
